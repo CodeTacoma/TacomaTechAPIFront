@@ -1,0 +1,44 @@
+quit using index for the mapping key
+
+<div className="each-category">
+                            {bizInfo.map((biz) => {
+                                //landing cards should show categories the user can access from
+                                //the "landing page"
+                                return <BusinessExpansionPanel eachBiz={biz}/>
+                            })}
+                        </div>
+
+Application flow:  expansion panels with categories in them ->
+                                              panel expands ->
+                                              cards with all listings and info on them
+
+
+
+
+{listings !== null ? (
+                    <div className="categories">
+
+                        <div className="each-category">
+                            {listings.map((category) => {
+                                 //landing cards should show categories the user can access from
+                                //the "landing page"
+                                return (
+                                    <LandingCardClass items={category} />
+                                )
+                            })}
+                        </div>
+                        {console.log({listings})}
+                        {/*<LandingExpansionPanel bizns={listings}/>*/}
+                    </div>
+                ) : (
+                    // uh oh, listings / categories didn't load, render a helpful message
+                    //Would like to stick this code in the LandingCardClass but not sure yet?
+                    <div>
+                        <h1>brb, loading categories</h1>
+                    </div>
+                )}
+
+<div className={classes.root}>
+
+            </div>
+        );
