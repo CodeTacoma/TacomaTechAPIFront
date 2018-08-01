@@ -135,3 +135,29 @@ getBizListings = async () => {
 }
 
 export default App;
+
+
+/////////////////////////////////////////////////////////////////////////////
+
+// render() {
+//   const { cityListings, bizListings, eduListings, eventListings, groupListings } = this.state;
+
+//   return (
+
+//       <div className="App">
+//           <HeaderAppBar />
+//           <h1>Tacoma's Tech Ecosystem</h1>
+//           {/* Render the listings if we have them */}
+//           <LandingExpansionPanel
+//               bizList={ bizListings }
+//               cityList={ cityListings }
+//               eduList={ eduListings }
+//               eventList={ eventListings }
+//               groupList={ groupListings }
+//           />
+//       </div>
+//   );
+// }
+// }
+
+// export default App;
