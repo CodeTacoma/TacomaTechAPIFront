@@ -8,6 +8,19 @@ import logo from './logo.svg';
 
 
 class App extends Component {
+  // constructor(props) {
+  //   super(props);
+  //   this.state = {
+  //       //listings: null,
+  //       bizListings: null,
+  //       cityListings: null,
+  //       eduListings: null,
+  //       eventListings: null,
+  //       groupListings: null
+  //       //displayList: 'categories'
+  //   }
+  //  }
+
 
 //   componentDidMount() {
 //     //this.getListings();
