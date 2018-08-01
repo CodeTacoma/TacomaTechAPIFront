@@ -10,28 +10,28 @@ import logo from './logo.svg';
 
 
 class App extends Component {
-  // constructor(props) {
-  //   super(props);
-  //   this.state = {
-  //       //listings: null,
-  //       bizListings: null,
-  //       cityListings: null,
-  //       eduListings: null,
-  //       eventListings: null,
-  //       groupListings: null
-  //       //displayList: 'categories'
-  //   }
-  //  }
+  constructor(props) {
+    super(props);
+    this.state = {
+        //listings: null,
+        bizListings: null,
+        cityListings: null,
+        eduListings: null,
+        eventListings: null,
+        groupListings: null
+        //displayList: 'categories'
+    }
+   }
 
 
-//   componentDidMount() {
-//     //this.getListings();
-//     this.getBizListings();
-//     this.getCityListings();
-//     this.getEduListings();
-//     this.getEventListings();
-//     this.getTechGroupListings();
-// }
+  componentDidMount() {
+    //this.getListings();
+    this.getBizListings();
+    this.getCityListings();
+    this.getEduListings();
+    this.getEventListings();
+    this.getTechGroupListings();
+}
 
 componentDidUpdate() {
     console.log("App updated");
@@ -121,45 +121,45 @@ getBizListings = async () => {
 };
 
 
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
-    );
-  }
-}
+//   render() {
+//     return (
+//       <div className="App">
+//         <header className="App-header">
+//           <img src={logo} className="App-logo" alt="logo" />
+//           <h1 className="App-title">Welcome to React</h1>
+//         </header>
+//         <p className="App-intro">
+//           To get started, edit <code>src/App.js</code> and save to reload.
+//         </p>
+//       </div>
+//     );
+//   }
+// }
 
-export default App;
+// export default App;
 
 
 /////////////////////////////////////////////////////////////////////////////
 
-// render() {
-//   const { cityListings, bizListings, eduListings, eventListings, groupListings } = this.state;
+render() {
+  const { cityListings, bizListings, eduListings, eventListings, groupListings } = this.state;
 
-//   return (
+  return (
 
-//       <div className="App">
-//           <HeaderAppBar />
-//           <h1>Tacoma's Tech Ecosystem</h1>
-//           {/* Render the listings if we have them */}
-//           <LandingExpansionPanel
-//               bizList={ bizListings }
-//               cityList={ cityListings }
-//               eduList={ eduListings }
-//               eventList={ eventListings }
-//               groupList={ groupListings }
-//           />
-//       </div>
-//   );
-// }
-// }
+      <div className="App">
+          <HeaderAppBar />
+          <h1>Tacoma's Tech Ecosystem</h1>
+          {/* Render the listings if we have them */}
+          <LandingExpansionPanel
+              bizList={ bizListings }
+              cityList={ cityListings }
+              eduList={ eduListings }
+              eventList={ eventListings }
+              groupList={ groupListings }
+          />
+      </div>
+  );
+}
+}
 
-// export default App;
+export default App;
