@@ -10,28 +10,28 @@ import logo from './logo.svg';
 
 
 class App extends Component {
-  // constructor(props) {
-  //   super(props);
-  //   this.state = {
-  //       //listings: null,
-  //       bizListings: null,
-  //       cityListings: null,
-  //       eduListings: null,
-  //       eventListings: null,
-  //       groupListings: null
-  //       //displayList: 'categories'
-  //   }
-  //  }
+  constructor(props) {
+    super(props);
+    this.state = {
+        //listings: null,
+        bizListings: null,
+        cityListings: null,
+        eduListings: null,
+        eventListings: null,
+        groupListings: null
+        //displayList: 'categories'
+    }
+   }
 
 
-//   componentDidMount() {
-//     //this.getListings();
-//     this.getBizListings();
-//     this.getCityListings();
-//     this.getEduListings();
-//     this.getEventListings();
-//     this.getTechGroupListings();
-// }
+  componentDidMount() {
+    //this.getListings();
+    this.getBizListings();
+    this.getCityListings();
+    this.getEduListings();
+    this.getEventListings();
+    this.getTechGroupListings();
+}
 
 componentDidUpdate() {
     console.log("App updated");
