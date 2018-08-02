@@ -8,7 +8,8 @@ import HeaderAppBar from "./components/HeaderAppBarClass";
 
 import logo from './logo.svg';
 
-const root = "{$API_ROOT}"
+const root = "http://www.codetacoma.xyz";
+console.log(root);
 
 class App extends Component {
   constructor(props) {
@@ -29,7 +30,7 @@ class App extends Component {
   componentDidMount() {
     //this.getListings();
     this.getBizListings();
-    this.getCityListings();
+    //this.getCityListings();
     this.getEduListings();
     this.getEventListings();
     this.getTechGroupListings();
@@ -61,7 +62,7 @@ getListings = async () => {
 getTechGroupListings = async () => {
     // Get the listings and store them in state
     try {
-        const fetchAddr = path.join(root, "/groups");
+        const fetchAddr = root+"/groups";
         //const data = await fetch('/groups');
         const data = await fetch(fetchAddr);
         const prettyData = await data.json();
@@ -76,7 +77,9 @@ getTechGroupListings = async () => {
 getEventListings = async () => {
     // Get the listings and store them in state
     try {
-        const data = await fetch('/events');
+        const fetchAddr = root+"/events";
+        const data = await fetch(fetchAddr);
+        //const data = await fetch('/events');
         const prettyData = await data.json();
         //console.log(prettyData.roots);
         this.setState({ eventListings: prettyData.eventsListings })
@@ -89,7 +92,9 @@ getEventListings = async () => {
 getEduListings = async () => {
     // Get the listings and store them in state
     try {
-        const data = await fetch('/education');
+        const fetchAddr = root+"/education";
+        const data = await fetch(fetchAddr);
+//        const data = await fetch('/education');
         const prettyData = await data.json();
         //console.log(prettyData.roots);
         this.setState({ eduListings: prettyData.edulisting })
@@ -114,7 +119,9 @@ getCityListings = async () => {
 
 getBizListings = async () => {
     try {
-        const data = await fetch('/business');
+        const fetchAddr = root+"/business";
+        const data = await fetch(fetchAddr);
+//        const data = await fetch('/business');
         const prettyData = await data.json();
         //console.log(prettyData.bizListings);
         this.setState({ bizListings: prettyData.bizListings })
