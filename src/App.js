@@ -2,12 +2,13 @@
 
 import React, { Component } from 'react';
 import './App.css';
-import { BrowserRouter as Router, Link } from 'react-router-dom'
+//import { BrowserRouter as Router, Link } from 'react-router-dom'
 import LandingExpansionPanel from './components/LandingExpansionPanel'
 import HeaderAppBar from "./components/HeaderAppBarClass";
 
 import logo from './logo.svg';
 
+const root = "{$API_ROOT}"
 
 class App extends Component {
   constructor(props) {
@@ -22,6 +23,7 @@ class App extends Component {
         //displayList: 'categories'
     }
    }
+
 
 
   componentDidMount() {
@@ -59,7 +61,9 @@ getListings = async () => {
 getTechGroupListings = async () => {
     // Get the listings and store them in state
     try {
-        const data = await fetch('/groups');
+        const fetchAddr = path.join(root, "/groups");
+        //const data = await fetch('/groups');
+        const data = await fetch(fetchAddr);
         const prettyData = await data.json();
         //console.log(prettyData.roots);
         this.setState({ groupListings: prettyData.groupListings })
