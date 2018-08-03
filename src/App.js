@@ -1,13 +1,13 @@
-
-
 import React, { Component } from 'react';
 import './App.css';
+import {connect} from 'react-redux';
+import PropTypes from 'prop-types';
+import {withRouter} from 'react-router-dom';
 //import { BrowserRouter as Router, Link } from 'react-router-dom'
 import LandingExpansionPanel from './components/LandingExpansionPanel'
 import HeaderAppBar from "./components/HeaderAppBarClass";
-
-import logo from './logo.svg';
-
+import {fetchAllListings} from './Actions/TechActions.js'
+import LoadError from './components/LoadError';
 const root = "http://www.codetacoma.xyz";
 console.log(root);
 
@@ -15,25 +15,18 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-        //listings: null,
-        bizListings: null,
-        cityListings: null,
-        eduListings: null,
-        eventListings: null,
-        groupListings: null
-        //displayList: 'categories'
+        loading: true
     }
    }
 
 
 
-  componentDidMount() {
-    //this.getListings();
-    this.getBizListings();
-    //this.getCityListings();
-    this.getEduListings();
-    this.getEventListings();
-    this.getTechGroupListings();
+async componentDidMount() {
+    this.setState({loading: true}, async () => {
+        await this.props.fetchAllListings()
+        this.setState({loading: false})
+
+    })
 }
 
 componentDidUpdate() {
@@ -46,131 +39,44 @@ componentDidUpdate() {
     Much thanks to Gavin for getting me straightened out here and getting the listings []
     loaded properly!
  */
-getListings = async () => {
-    // Get the listings and store them in state
-    try {
-        const data = await fetch('/api');
-        const prettyData = await data.json();
-        //console.log(prettyData.roots);
-        this.setState({ listings: prettyData.roots })
-    }
-    catch (error) {
-        console.log('error', error);
-    }
-};
 
-getTechGroupListings = async () => {
-    // Get the listings and store them in state
-    try {
-        const fetchAddr = root+"/groups";
-        //const data = await fetch('/groups');
-        const data = await fetch(fetchAddr);
-        const prettyData = await data.json();
-        //console.log(prettyData.roots);
-        this.setState({ groupListings: prettyData.groupListings })
-    }
-    catch (error) {
-        console.log('error', error);
-    }
-};
-
-getEventListings = async () => {
-    // Get the listings and store them in state
-    try {
-        const fetchAddr = root+"/events";
-        const data = await fetch(fetchAddr);
-        //const data = await fetch('/events');
-        const prettyData = await data.json();
-        //console.log(prettyData.roots);
-        this.setState({ eventListings: prettyData.eventsListings })
-    }
-    catch (error) {
-        console.log('error', error);
-    }
-};
-
-getEduListings = async () => {
-    // Get the listings and store them in state
-    try {
-        const fetchAddr = root+"/education";
-        const data = await fetch(fetchAddr);
-//        const data = await fetch('/education');
-        const prettyData = await data.json();
-        //console.log(prettyData.roots);
-        this.setState({ eduListings: prettyData.edulisting })
-    }
-    catch (error) {
-        console.log('error', error);
-    }
-};
-
-getCityListings = async () => {
-    // Get the listings and store them in state
-    try {
-        const data = await fetch('/city');
-        const prettyData = await data.json();
-        //console.log(prettyData.roots);
-        this.setState({ cityListings: prettyData.cityListings })
-    }
-    catch (error) {
-        console.log('error', error);
-    }
-};
-
-getBizListings = async () => {
-    try {
-        const fetchAddr = root+"/business";
-        const data = await fetch(fetchAddr);
-//        const data = await fetch('/business');
-        const prettyData = await data.json();
-        //console.log(prettyData.bizListings);
-        this.setState({ bizListings: prettyData.bizListings })
-    }
-    catch (error) {
-        console.log('error', error);
-    }
-};
-
-
-//   render() {
-//     return (
-//       <div className="App">
-//         <header className="App-header">
-//           <img src={logo} className="App-logo" alt="logo" />
-//           <h1 className="App-title">Welcome to React</h1>
-//         </header>
-//         <p className="App-intro">
-//           To get started, edit <code>src/App.js</code> and save to reload.
-//         </p>
-//       </div>
-//     );
-//   }
-// }
-
-// export default App;
-
-
-/////////////////////////////////////////////////////////////////////////////
 
 render() {
-  const { cityListings, bizListings, eduListings, eventListings, groupListings } = this.state;
+  const { Biz, City, EDU, Events, Group } = this.props;
 
   return (
 
       <div className="App">
           <HeaderAppBar />
           <h1>Tacoma's Tech Ecosystem</h1>
-          {/* Render the listings if we have them */}
-          <LandingExpansionPanel
-              bizList={ bizListings }
-              cityList={ cityListings }
-              eduList={ eduListings }
-              eventList={ eventListings }
-              groupList={ groupListings }
-          />
+         { this.state.loading ? <LoadError/> :
+          /* Render the listings if we have them */
+          /* This is not the correct way, a hack for now, we should separate these into five diff components rather than passing five different props to one comp. */
+        <LandingExpansionPanel
+              bizList={ Biz.bizListings }
+              cityList={ City.cityListings }
+            //   @CHAD you need to fix this, edu is the only one with listing.. vs listings
+            // Also confusion with events and event
+              eduList={ EDU.edulisting }
+              eventList={ Events.eventsListings }
+              groupList={ Group.groupListings }
+        />}
       </div>
   );
 }
 }
 
-export default App;
+// This is where we connect to the redux store and have access to all the items in our store by mapping them from stateStore to this components Props.. Now we have access to any of this stuff through props. 
+const mapStateToProps = state => ({
+    Biz: state.Biz,
+    City: state.City,
+    EDU: state.EDU,
+    Events: state.Event,
+    Group: state.Group,
+});
+
+const mapDispatchToProps = dispatch => ({
+  fetchAllListings: () => dispatch(fetchAllListings())
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

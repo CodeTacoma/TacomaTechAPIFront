@@ -1,16 +1,7 @@
 
 body {
-  position: absolute;
-  
-  left: 35%;
-      right: 35%;
-  
-  /*-webkit-transform: translate(-50%, -50%);*/
-  /*-moz-transform: translate(-50%, -50%);*/
-  /*-ms-transform: translate(-50%, -50%);*/
-  /*-o-transform: translate(-50%, -50%);*/
-  /*transform: translate(-50%, -50%);*/
-  
+  max-width: 70%;
+  margin: auto;
   background-color: #ecf0f1;
   color: #34495e;
   font-family: Trebuchet, Arial, sans-serif;
@@ -21,37 +12,3 @@ body {
       background: url('./static/FossMarina_South_facing_East.jpg') no-repeat center fixed;
       background-size: cover;
   }
-
-/*
-
-  original / old code below here
-
-*/
-/* .App {
-  text-align: center;
-}
-
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
-}
-
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
-}
-
-.App-title {
-  font-size: 1.5em;
-}
-
-.App-intro {
-  font-size: large;
-}
-
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-} */
