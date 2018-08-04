@@ -1,3 +1,5 @@
+
+
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
@@ -7,6 +9,7 @@ import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import GenericCard from './GenericCard'
 import BusinessCardListClass from './BusinessCardListClass'
 import CityCardListClass from './CityCardListClass'
 import EducationCardListClass from './EducationCardListClass'
@@ -31,7 +34,7 @@ const styles = theme => ({
     },
 });
 
-class LandingExpansionPanel extends React.Component {
+class ExpansionPanelComponent extends React.Component {
     state = {
         expanded: null,
     };
@@ -43,22 +46,36 @@ class LandingExpansionPanel extends React.Component {
     };
 
     render() {
-        const { classes, bizList, cityList, eduList, eventList, groupList } = this.props;
-        const { expanded } = this.state;
-        //console.log( {bizList} );
-
+        const { classes, allListings } = this.props;
+        console.log(this.state)
         return (
-            <div>  
-                
+            <div>
+               { allListings.map((ele, index) => {
+                   const abstractedData = Object.keys(ele)[1]
+                   console.log(abstractedData)
+                return <ExpansionPanel key={index} expanded={this.state.expanded === abstractedData} onChange={this.handleChange(abstractedData)}>
+                    <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
+                        <Typography className={classes.heading}>{abstractedData}</Typography>
+                        {/*<Typography className={classes.secondaryHeading}> South Sound Tech Companies</Typography>*/}
+                    </ExpansionPanelSummary>
+                    <ExpansionPanelDetails>
+                        <Typography>
+                            {/*Tacoma & South Sound Tech Companies*/}
+                            <GenericCard key={index} cardData={ele[abstractedData]}/>
+                        </Typography>
+                    </ExpansionPanelDetails>
+                </ExpansionPanel>
+                })  }
 
+         
             </div> //this is the closing div tag for the return
 
         ); //end of return()
     } // end of render()
 } //end of LEP
 
-LandingExpansionPanel.propTypes = {
+ExpansionPanel.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(LandingExpansionPanel);
+export default withStyles(styles)(ExpansionPanelComponent);

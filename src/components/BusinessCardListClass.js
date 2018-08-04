@@ -34,9 +34,9 @@ class BusinessCardListClass extends React.Component {
             <div className="business-card-list">
                 {bizList !== null ? (
                     <div className="each-business">
-                         {bizList.map((biz) => {
+                         {bizList.map((biz, index) => {
                              return (
-                                 <BusinessCardClass thisBiz={ biz } />
+                                 <BusinessCardClass key={index+biz} thisBiz={ biz } />
                              )
                          })}
                     </div>

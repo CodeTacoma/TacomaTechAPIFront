@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import {withRouter} from 'react-router-dom';
 //import { BrowserRouter as Router, Link } from 'react-router-dom'
-import LandingExpansionPanel from './components/LandingExpansionPanel'
+import ExpansionPanelComponent from './components/ExpansionPanelComponent'
 import HeaderAppBar from "./components/HeaderAppBarClass";
 import {fetchAllListings} from './Actions/TechActions.js'
 import LoadError from './components/LoadError';
@@ -42,8 +42,7 @@ componentDidUpdate() {
 
 
 render() {
-  const { Biz, City, EDU, Events, Group } = this.props;
-
+    console.log(this.props)
   return (
 
       <div className="App">
@@ -52,15 +51,11 @@ render() {
          { this.state.loading ? <LoadError/> :
           /* Render the listings if we have them */
           /* This is not the correct way, a hack for now, we should separate these into five diff components rather than passing five different props to one comp. */
-        <LandingExpansionPanel
-              bizList={ Biz.bizListings }
-              cityList={ City.cityListings }
-            //   @CHAD you need to fix this, edu is the only one with listing.. vs listings
-            // Also confusion with events and event
-              eduList={ EDU.edulisting }
-              eventList={ Events.eventsListings }
-              groupList={ Group.groupListings }
-        />}
+        //   this.props.allListings.map((listingType, index) => {
+               <ExpansionPanelComponent allListings={this.props.allListings}/>
+        //   })
+            // <ExpansionPanelComponent allListings={this.props.allListings}/>
+        }
       </div>
   );
 }
@@ -73,6 +68,7 @@ const mapStateToProps = state => ({
     EDU: state.EDU,
     Events: state.Event,
     Group: state.Group,
+    allListings: [state.Biz, state.City, state.EDU, state.Event, state.Group]
 });
 
 const mapDispatchToProps = dispatch => ({
