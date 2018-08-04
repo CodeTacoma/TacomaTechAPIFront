@@ -8,9 +8,11 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 
+import '../Styles/_GenericCard.css'
+
 const styles = {
     card: {
-        maxWidth: 600,
+        width: '100%',
     }
 };
 
@@ -27,10 +29,11 @@ class GeneralCard extends React.Component {
         const { cardData } = this.props;
         console.log(cardData)
         return (
-            <div>
+            <div className="cardsContainers">
               {cardData.map((ele, index) => {
-                return <Card key={index} className="card">
-                    <CardContent >
+                return <div key={index} className="cardContainer">
+                <Card className="card" style={{width: '400px'}}>
+                    <CardContent>
                         <Typography gutterBottom variant="headline" component="h2">
                             { ele.name }
                         </Typography>
@@ -49,6 +52,7 @@ class GeneralCard extends React.Component {
                         {/*</Button>*/}
                     </CardActions>
                 </Card>
+                </div>
 
               })}
             </div>

@@ -1,0 +1,12 @@
+.cardsContainers {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  /* grid-template-rows: 1fr; */
+
+}
+
+.cardContainer {
+  width: 100%;
+  justify-self: center;
+  margin-bottom: 5em;
+}

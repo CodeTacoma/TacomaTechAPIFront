@@ -1,5 +1,3 @@
-
-
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
@@ -10,13 +8,7 @@ import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import GenericCard from './GenericCard'
-import BusinessCardListClass from './BusinessCardListClass'
-import CityCardListClass from './CityCardListClass'
-import EducationCardListClass from './EducationCardListClass'
-import EventCardListClass from './EventCardListClass'
-import TechGroupCardListClass from './TechGroupCardListClass'
-import LoadErrorPaper from './LoadError'
-import HeaderAppBar from './HeaderAppBarClass'
+
 
 const styles = theme => ({
     root: {
@@ -45,6 +37,31 @@ class ExpansionPanelComponent extends React.Component {
         });
     };
 
+    parseTerribleApiNaming(word) {
+        // @chad youre terrible api naming conventions have ruined functional programming;)
+        let shortHandWord = word.toLowerCase().split('l')[0]
+        let prettyWord;
+        console.log(shortHandWord)
+        switch(shortHandWord) {
+            case 'biz':
+                prettyWord = 'Business'
+                break;
+            case 'edu':
+                prettyWord = 'Education'
+                break;
+            case 'events':
+                prettyWord = 'Events'
+                break;
+            case 'group':
+                prettyWord = 'Group'
+                break;
+            default:
+                prettyWord = 'Whoops'
+        }
+        return prettyWord
+
+    }
+
     render() {
         const { classes, allListings } = this.props;
         console.log(this.state)
@@ -55,12 +72,10 @@ class ExpansionPanelComponent extends React.Component {
                    console.log(abstractedData)
                 return <ExpansionPanel key={index} expanded={this.state.expanded === abstractedData} onChange={this.handleChange(abstractedData)}>
                     <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-                        <Typography className={classes.heading}>{abstractedData}</Typography>
-                        {/*<Typography className={classes.secondaryHeading}> South Sound Tech Companies</Typography>*/}
+                        <Typography className={classes.heading}>{this.parseTerribleApiNaming(abstractedData)}</Typography>
                     </ExpansionPanelSummary>
                     <ExpansionPanelDetails>
                         <Typography>
-                            {/*Tacoma & South Sound Tech Companies*/}
                             <GenericCard key={index} cardData={ele[abstractedData]}/>
                         </Typography>
                     </ExpansionPanelDetails>
