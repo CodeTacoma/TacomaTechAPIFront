@@ -10,4 +10,6 @@
 
   * REACT_APP_API_ROOT='apikeyhere'
 
+  * https://github.com/facebook/create-react-app/blob/master/packages/react-scripts/template/README.md#adding-custom-environment-variables
+
 
