@@ -32,8 +32,8 @@ class GeneralCard extends React.Component {
             <div className="cardsContainers">
               {cardData.map((ele, index) => {
                 return <div key={index} className="cardContainer">
-                <Card className="card" style={{width: '400px'}}>
-                    <CardContent>
+                <Card className="card" >
+                    <CardContent >
                         <Typography gutterBottom variant="headline" component="h2">
                             { ele.name }
                         </Typography>

@@ -74,8 +74,8 @@ class ExpansionPanelComponent extends React.Component {
                     <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
                         <Typography className={classes.heading}>{this.parseTerribleApiNaming(abstractedData)}</Typography>
                     </ExpansionPanelSummary>
-                    <ExpansionPanelDetails>
-                        <Typography>
+                    <ExpansionPanelDetails style={{width: '100%'}}>
+                        <Typography style={{width: '90%'}}>
                             <GenericCard key={index} cardData={ele[abstractedData]}/>
                         </Typography>
                     </ExpansionPanelDetails>
