@@ -1,15 +1,11 @@
 import React, { Component } from 'react';
 import './App.css';
 import {connect} from 'react-redux';
-import PropTypes from 'prop-types';
-import {withRouter} from 'react-router-dom';
-//import { BrowserRouter as Router, Link } from 'react-router-dom'
-import LandingExpansionPanel from './components/LandingExpansionPanel'
+import ExpansionPanelComponent from './components/ExpansionPanelComponent'
 import HeaderAppBar from "./components/HeaderAppBarClass";
 import {fetchAllListings} from './Actions/TechActions.js'
 import LoadError from './components/LoadError';
 const root = "http://www.codetacoma.xyz";
-console.log(root);
 
 class App extends Component {
   constructor(props) {
@@ -19,8 +15,6 @@ class App extends Component {
     }
    }
 
-
-
 async componentDidMount() {
     this.setState({loading: true}, async () => {
         await this.props.fetchAllListings()
@@ -29,38 +23,13 @@ async componentDidMount() {
     })
 }
 
-componentDidUpdate() {
-    console.log("App updated");
-}
-
-/*
-    Load category info for the "landing page" render the user will see first, also
-    serves as the "home page" for the app.
-    Much thanks to Gavin for getting me straightened out here and getting the listings []
-    loaded properly!
- */
-
-
 render() {
-  const { Biz, City, EDU, Events, Group } = this.props;
-
   return (
 
       <div className="App">
-          <HeaderAppBar />
-          <h1>Tacoma's Tech Ecosystem</h1>
-         { this.state.loading ? <LoadError/> :
-          /* Render the listings if we have them */
-          /* This is not the correct way, a hack for now, we should separate these into five diff components rather than passing five different props to one comp. */
-        <LandingExpansionPanel
-              bizList={ Biz.bizListings }
-              cityList={ City.cityListings }
-            //   @CHAD you need to fix this, edu is the only one with listing.. vs listings
-            // Also confusion with events and event
-              eduList={ EDU.edulisting }
-              eventList={ Events.eventsListings }
-              groupList={ Group.groupListings }
-        />}
+        <HeaderAppBar />
+        <h1>Tacoma's Tech Ecosystem</h1>
+        { this.state.loading ? <LoadError/> :  <ExpansionPanelComponent allListings={this.props.allListings}/> }
       </div>
   );
 }
@@ -73,6 +42,7 @@ const mapStateToProps = state => ({
     EDU: state.EDU,
     Events: state.Event,
     Group: state.Group,
+    allListings: [state.Biz, state.EDU, state.Event, state.Group]
 });
 
 const mapDispatchToProps = dispatch => ({

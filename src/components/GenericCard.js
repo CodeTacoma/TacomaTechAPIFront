@@ -1,4 +1,3 @@
-
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
@@ -9,45 +8,37 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 
+import '../Styles/_GenericCard.css'
+
 const styles = {
     card: {
-        maxWidth: 600,
+        width: '100%',
     }
 };
 
-/*
-    Displays information about each business listed in the
-    return array.
- */
-class BusinessCardClass extends React.Component {
-    constructor(props) {
-        super(props);
-    }
 
-    /*
-        Currently displays just the name and a description of a business.
-        I still need to figure out how to click on the "details" button
-        then display details about that business.
-        I think the best way to do that for now is with an expanding element of some type.
-        However, I also want to do it the "best practices" way so whatever that
-        is, I'll refactor to that after I get it working.
-    */
+class GeneralCard extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  static PropTypes = {
+    cardData: PropTypes.object
+  }
+
     render() {
-        const { thisBiz } = this.props;
-
-        console.log({ thisBiz });
-
+        const { cardData } = this.props;
+        console.log(cardData)
         return (
-            <div>
-                <Card className="card">
-                    <CardContent>
+            <div className="cardsContainers">
+              {cardData.map((ele, index) => {
+                return <div key={index} className="cardContainer">
+                <Card className="card" >
+                    <CardContent >
                         <Typography gutterBottom variant="headline" component="h2">
-                            {/*{this.props.bizListings.name}*/}
-                            { thisBiz.name }
+                            { ele.name }
                         </Typography>
                         <Typography component="p">
-                            {/*{this.props.bizListings.description}*/}
-                            { thisBiz.description }
+                            { ele.description }
                         </Typography>
                         {/*also want to add in more detail info either in a "details" type of
                         card or a UI element that expands.  just want to get these to render first*/}
@@ -61,13 +52,16 @@ class BusinessCardClass extends React.Component {
                         {/*</Button>*/}
                     </CardActions>
                 </Card>
+                </div>
+
+              })}
             </div>
         );
     }
 }
 
-BusinessCardClass.propTypes = {
+GeneralCard.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(BusinessCardClass);
+export default withStyles(styles)(GeneralCard);

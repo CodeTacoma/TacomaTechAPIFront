@@ -1,0 +1,15 @@
+.cardsContainers {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-gap: 10px;
+  align-items: center;
+  justify-content: center;
+  /* grid-template-rows: 1fr; */
+
+}
+
+.cardContainer {
+  width: 100%;
+  justify-self: center;
+  margin-bottom: 5em;
+}
