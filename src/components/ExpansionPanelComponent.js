@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-//import Container from '@material-ui/core/Container';
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
@@ -41,7 +40,6 @@ class ExpansionPanelComponent extends React.Component {
         // @chad youre terrible api naming conventions have ruined functional programming;)
         let shortHandWord = word.toLowerCase().split('l')[0]
         let prettyWord;
-        console.log(shortHandWord)
         switch(shortHandWord) {
             case 'biz':
                 prettyWord = 'Business'
@@ -64,20 +62,16 @@ class ExpansionPanelComponent extends React.Component {
 
     render() {
         const { classes, allListings } = this.props;
-        console.log(this.state)
         return (
             <div>
                { allListings.map((ele, index) => {
                    const abstractedData = Object.keys(ele)[1]
-                   console.log(abstractedData)
                 return <ExpansionPanel key={index} expanded={this.state.expanded === abstractedData} onChange={this.handleChange(abstractedData)}>
                     <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
                         <Typography className={classes.heading}>{this.parseTerribleApiNaming(abstractedData)}</Typography>
                     </ExpansionPanelSummary>
                     <ExpansionPanelDetails style={{width: '100%'}}>
-                        <Typography style={{width: '90%'}}>
-                            <GenericCard key={index} cardData={ele[abstractedData]}/>
-                        </Typography>
+                        <GenericCard key={index} cardData={ele[abstractedData]}/>
                     </ExpansionPanelDetails>
                 </ExpansionPanel>
                 })  }
@@ -90,7 +84,7 @@ class ExpansionPanelComponent extends React.Component {
 } //end of LEP
 
 ExpansionPanel.propTypes = {
-    classes: PropTypes.object.isRequired,
+    classes: PropTypes.object,
 };
 
 export default withStyles(styles)(ExpansionPanelComponent);
