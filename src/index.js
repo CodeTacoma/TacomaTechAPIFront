@@ -6,7 +6,7 @@ import App from './App';
 import {Provider} from 'react-redux';
 
 import createAppStore from './Lib/app-create-store';
-const {persistor, store} = createAppStore()
+const {store} = createAppStore()
 
 
 ReactDOM.render(

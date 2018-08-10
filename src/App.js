@@ -5,7 +5,6 @@ import ExpansionPanelComponent from './components/ExpansionPanelComponent'
 import HeaderAppBar from "./components/HeaderAppBarClass";
 import {fetchAllListings} from './Actions/TechActions.js'
 import LoadError from './components/LoadError';
-const root = "http://www.codetacoma.xyz";
 
 class App extends Component {
   constructor(props) {
