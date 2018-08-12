@@ -46,6 +46,7 @@ class GeneralCard extends React.Component {
                         {/*<Button size="small" color="primary">*/}
                             {/*Map*/}
                         {/*</Button>*/}
+                        {/* TODO: https://www.google.com/maps/place/2716+A+St,+Tacoma,+WA+98402/@47.236554,-122.4358153 */}
                     </CardActions>
                 </Card>
                 </div>
