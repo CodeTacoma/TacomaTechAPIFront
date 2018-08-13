@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import {connect} from 'react-redux';
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
@@ -29,6 +29,10 @@ class ExpansionPanelComponent extends React.Component {
     state = {
         expanded: null,
     };
+
+    componentDidMount() {
+        console.log('mounted', this.props)
+    }
 
     handleChange = panel => (event, expanded) => {
         this.setState({
@@ -61,14 +65,14 @@ class ExpansionPanelComponent extends React.Component {
     }
 
     render() {
-        const { classes, allListings } = this.props;
+        const {allListings } = this.props;
         return (
             <div>
                { allListings.map((ele, index) => {
                    const abstractedData = Object.keys(ele)[1]
                 return <ExpansionPanel key={index} expanded={this.state.expanded === abstractedData} onChange={this.handleChange(abstractedData)}>
                     <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-                        <Typography className={classes.heading}>{this.parseTerribleApiNaming(abstractedData)}</Typography>
+                        <Typography className={styles.heading}>{this.parseTerribleApiNaming(abstractedData)}</Typography>
                     </ExpansionPanelSummary>
                     <ExpansionPanelDetails style={{width: '100%'}}>
                         <GenericCard key={index} cardData={ele[abstractedData]}/>
@@ -87,4 +91,18 @@ ExpansionPanel.propTypes = {
     classes: PropTypes.object,
 };
 
-export default withStyles(styles)(ExpansionPanelComponent);
+// export default withStyles(styles)(ExpansionPanelComponent);
+
+const mapStateToProps = state => ({
+    Biz: state.Biz,
+    City: state.City,
+    EDU: state.EDU,
+    Events: state.Event,
+    Group: state.Group,
+    allListings: [state.Biz, state.EDU, state.Event, state.Group]
+});
+
+const mapDispatchToProps = dispatch => ({
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(ExpansionPanelComponent);
