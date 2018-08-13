@@ -27,8 +27,10 @@ render() {
 
       <div className="App">
         <HeaderAppBar />
-        <h1>Tacoma's Tech Ecosystem</h1>
-        { this.state.loading ? <LoadError/> :  <ExpansionPanelComponent allListings={this.props.allListings}/> }
+        <div className="allCardContainer">
+            <h1>Tacoma's Tech Ecosystem</h1>
+            { this.state.loading ? <LoadError/> :  <ExpansionPanelComponent allListings={this.props.allListings}/> }
+        </div>
       </div>
   );
 }

@@ -1,11 +1,17 @@
 
 body {
-  max-width: 70%;
   margin: auto;
-  background-color: #ecf0f1;
   color: #34495e;
   font-family: Trebuchet, Arial, sans-serif;
   text-align: left;
+  }
+
+  .allCardContainer{
+    max-width: 70%;
+    margin: auto;
+    background-color: #ecf0f1;
+    padding: 10px;
+
   }
 
   a {
