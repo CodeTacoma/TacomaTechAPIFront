@@ -54,7 +54,7 @@ class GeneralCard extends React.Component {
                         <Typography component="p">
                             { ele.description }
                         </Typography>
-                       {ele.begin && ele.end && this.renderEventTimeDisplay(ele)}
+                       {!!ele.begin && !!ele.end && this.renderEventTimeDisplay(ele)}
                     </CardContent>
                     <CardActions>
                         <Button color="primary" size="small">
