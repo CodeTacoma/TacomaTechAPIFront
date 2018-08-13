@@ -24,16 +24,17 @@ class GeneralCard extends React.Component {
   }
 
   renderEventTimeDisplay(thisEvent) {
+      console.log(thisEvent)
       return (
         <div>
             <Typography component="p">
                 Event type: { thisEvent.type }
             </Typography>
             <Typography component="p">
-                Event begin: { DateTime.fromObject(thisEvent.begin).toLocaleString() }
+                Event begin: { DateTime.fromISO(thisEvent.begin).toLocaleString(DateTime.DATETIME_FULL) }
             </Typography>
             <Typography component="p">
-                Event end: { DateTime.fromObject(thisEvent.end).toLocaleString() }
+                Event end: { DateTime.fromISO(thisEvent.end).toLocaleString(DateTime.DATETIME_FULL) }
             </Typography>
         </div>
       )
