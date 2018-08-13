@@ -6,6 +6,7 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import { DateTime } from 'luxon';
 
 import '../Styles/_GenericCard.css'
 
@@ -29,10 +30,10 @@ class GeneralCard extends React.Component {
                 Event type: { thisEvent.type }
             </Typography>
             <Typography component="p">
-                Event begin: { thisEvent.begin }
+                Event begin: { DateTime.fromObject(thisEvent.begin).toLocaleString() }
             </Typography>
             <Typography component="p">
-                Event end: { thisEvent.end }
+                Event end: { DateTime.fromObject(thisEvent.end).toLocaleString() }
             </Typography>
         </div>
       )
