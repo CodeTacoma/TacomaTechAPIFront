@@ -43,10 +43,16 @@ class GeneralCard extends React.Component {
                         <Button color="primary" size="small">
                             Website
                         </Button>
-                        {/*<Button size="small" color="primary">*/}
-                            {/*Map*/}
-                        {/*</Button>*/}
-                        {/* TODO: https://www.google.com/maps/place/2716+A+St,+Tacoma,+WA+98402/@47.236554,-122.4358153 */}
+                        <a href={`https://www.google.com/search?q=${ele.name}`} target="_blank">
+                            <Button size="small" color="primary">
+                                Google
+                            </Button>
+                        </a>
+                        <a href={`https://www.google.com.sa/maps/search/${ele.name}?hl=en`} target="_blank">
+                            <Button size="small" color="primary">
+                                Maps
+                            </Button>
+                        </a>
                     </CardActions>
                 </Card>
                 </div>
