@@ -22,6 +22,22 @@ class GeneralCard extends React.Component {
     cardData: PropTypes.object
   }
 
+  renderEventTimeDisplay(thisEvent) {
+      return (
+        <div>
+            <Typography component="p">
+                Event type: { thisEvent.type }
+            </Typography>
+            <Typography component="p">
+                Event begin: { thisEvent.begin }
+            </Typography>
+            <Typography component="p">
+                Event end: { thisEvent.end }
+            </Typography>
+        </div>
+      )
+  }
+
     render() {
         const { cardData } = this.props;
         return (
@@ -29,15 +45,14 @@ class GeneralCard extends React.Component {
               {cardData.map((ele, index) => {
                 return <div key={index} className="cardContainer">
                 <Card className="card" >
-                    <CardContent >
+                    <CardContent>
                         <Typography gutterBottom variant="headline" component="h2">
                             { ele.name }
                         </Typography>
                         <Typography component="p">
                             { ele.description }
                         </Typography>
-                        {/*also want to add in more detail info either in a "details" type of
-                        card or a UI element that expands.  just want to get these to render first*/}
+                       {ele.begin && ele.end && this.renderEventTimeDisplay(ele)}
                     </CardContent>
                     <CardActions>
                         <Button color="primary" size="small">
