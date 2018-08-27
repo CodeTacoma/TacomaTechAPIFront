@@ -1,19 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-//import Container from '@material-ui/core/Container';
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import BusinessCardListClass from './BusinessCardListClass'
-import CityCardListClass from './CityCardListClass'
 import EducationCardListClass from './EducationCardListClass'
 import EventCardListClass from './EventCardListClass'
 import TechGroupCardListClass from './TechGroupCardListClass'
 import LoadErrorPaper from './LoadError'
-import HeaderAppBar from './HeaderAppBarClass'
 
 const styles = theme => ({
     root: {
@@ -43,7 +40,7 @@ class LandingExpansionPanel extends React.Component {
     };
 
     render() {
-        const { classes, bizList, cityList, eduList, eventList, groupList } = this.props;
+        const { classes, bizList, eduList, eventList, groupList } = this.props;
         const { expanded } = this.state;
         //console.log( {bizList} );
 
